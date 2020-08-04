@@ -1,7 +1,7 @@
 # Личный проект «Большое путешествие» [![Build status][travis-image]][travis-url]
 
 * Студент: [Алексей Сивцов](https://up.htmlacademy.ru/ecmascript/12/user/905693).
-* Наставник: `Неизвестно`.
+* Наставник: [`Андрей Рыжаков`](https://htmlacademy.ru/profile/id201015).
 
 ---
 
