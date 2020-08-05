@@ -9,9 +9,9 @@ function createMenu() {
       </nav>
     `
   );
-};
+}
 
-function createTotalPrice () {
+function createTotalPrice() {
   return (
     `
       <p class="trip-info__cost">
@@ -19,9 +19,9 @@ function createTotalPrice () {
       </p>
     `
   );
-};
+}
 
-function createTravelShortList () {
+function createTravelShortList() {
   return (
     `
       <section class="trip-main__trip-info  trip-info">
@@ -34,27 +34,27 @@ function createTravelShortList () {
       </section>
     `
   );
-};
+}
 
-function createTravelInDayList () {
+function createTravelInDayList() {
   return (
     `
       <ul class="trip-events__list">
       </ul>
     `
-    );
-};
+  );
+}
 
-function createTravelDaysList () {
+function createTravelDaysList() {
   return (
     `
       <ul class="trip-days">
       </ul>
     `
-    );
-};
+  );
+}
 
-function createTravelDay () {
+function createTravelDay() {
   return (
     `
       <li class="trip-days__item  day">
@@ -64,10 +64,10 @@ function createTravelDay () {
         </div>
       </li>
     `
-    );
-};
+  );
+}
 
-function createTravelCard () {
+function createTravelCard() {
   return (
     `
       <li class="trip-events__item">
@@ -106,9 +106,9 @@ function createTravelCard () {
       </li>
     `
   );
-};
+}
 
-function createTravelForm () {
+function createTravelForm() {
   return (
     `
       <form class="trip-events__item  event  event--edit" action="#" method="post">
@@ -287,9 +287,9 @@ function createTravelForm () {
       </form>
     `
   );
-};
+}
 
-function createFiltersForm () {
+function createFiltersForm() {
   return (
     `
       <form class="trip-filters" action="#" method="get">
@@ -312,9 +312,9 @@ function createFiltersForm () {
       </form>
     `
   );
-};
+}
 
-function createSortingForm () {
+function createSortingForm() {
   return (
     `
       <form class="trip-events__trip-sort  trip-sort" action="#" method="get">
@@ -349,17 +349,17 @@ function createSortingForm () {
       </form>
     `
   );
-};
+}
 
 const render = (container, template, place) => {
   container.insertAdjacentHTML(place, template);
 };
 
-const siteTripCostTravelElement = document.querySelector(`.trip-main`);
+const siteCostTravelElement = document.querySelector(`.trip-main`);
 const siteTripControlsElement = document.querySelector(`.trip-controls`);
 const siteTripEventsElement = document.querySelector(`.trip-events`);
 
-render(siteTripCostTravelElement, createTravelShortList(), `afterbegin`);
+render(siteCostTravelElement, createTravelShortList(), `afterbegin`);
 
 const siteTripInfoElement = document.querySelector(`.trip-info`);
 
