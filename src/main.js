@@ -8,7 +8,7 @@ import {createTravelDayElement} from './components/day-element.js';
 import {createTravelForm} from './components/travel-form.js';
 import {createFiltersForm} from './components/filters-form.js';
 import {createSortingForm} from './components/sorting-form.js';
-import {COUNT_OF_TRIPELEMENTS} from './utils.js';
+import {cards} from './components/card.js';
 
 const render = (container, template, place) => {
   container.insertAdjacentHTML(place, template);
@@ -35,10 +35,9 @@ const siteTripDaysListElement = document.querySelector(`.trip-days`);
 render(siteTripDaysListElement, createTravelDayElement(), `beforeend`);
 
 const siteTripDaysElement = document.querySelector(`.trip-days__item`);
-
 render(siteTripDaysElement, createDailyRoute(), `beforeend`);
 
 const siteTripInDayElement = siteTripEventsElement.querySelector(`.trip-events__list`);
-for (let i = 0; i < COUNT_OF_TRIPELEMENTS; i++) {
-  render(siteTripInDayElement, createTravelCard(), `beforeend`);
+for (let i = 0; i < cards.length; i++) {
+  render(siteTripInDayElement, createTravelCard(cards[i]), `beforeend`);
 }
