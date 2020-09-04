@@ -1,43 +1,57 @@
-import {createTravelCard} from './components/card.js';
-import {createMenu} from './components/menu.js';
-import {createTotalPrice} from './components/total-price.js';
-import {createShortRoute} from './components/short-route.js';
-import {createDailyRoute} from './components/daily-route.js';
-import {createTravelDaysList} from './components/travel-days.js';
-import {createTravelDayElement} from './components/day-element.js';
-import {createTravelForm} from './components/travel-form.js';
-import {createFiltersForm} from './components/filters-form.js';
-import {createSortingForm} from './components/sorting-form.js';
+import Card from './components/card.js';
+import Menu from './components/menu.js';
+import TotalPrice from './components/total-price.js';
+import ShortRoute from './components/short-route.js';
+import DailyRoute from './components/daily-route.js';
+import TravelDaysList from './components/travel-days.js';
+import TravelDayElement from './components/day-element.js';
+import TravelForm from './components/travel-form.js';
+import FiltersTemplate from './components/filters-form.js';
+import SortingForm from './components/sorting-form.js';
 import {cards} from './components/card.js';
-
-const render = (container, template, place) => {
-  container.insertAdjacentHTML(place, template);
-};
+import {render, RenderPosition} from './utils.js';
 
 const siteCostTravelElement = document.querySelector(`.trip-main`);
 const siteTripControlsElement = document.querySelector(`.trip-controls`);
 const siteTripEventsElement = document.querySelector(`.trip-events`);
 
-render(siteCostTravelElement, createShortRoute(), `afterbegin`);
+render(siteCostTravelElement, new ShortRoute().getElement(), RenderPosition.BEFOREEND);
 
 const siteTripInfoElement = document.querySelector(`.trip-info`);
 
-render(siteTripInfoElement, createTotalPrice(), `beforeend`);
-render(siteTripControlsElement, createMenu(), `beforeend`);
-render(siteTripControlsElement, createFiltersForm(), `beforeend`);
+render(siteTripInfoElement, new TotalPrice().getElement(), RenderPosition.BEFOREEND);
+render(siteTripControlsElement, new Menu().getElement(), RenderPosition.BEFOREEND);
+render(siteTripControlsElement, new FiltersTemplate().getElement(), RenderPosition.BEFOREEND);
 
-render(siteTripEventsElement, createSortingForm(), `beforeend`);
-render(siteTripEventsElement, createTravelForm(), `beforeend`);
-render(siteTripEventsElement, createTravelDaysList(), `beforeend`);
+render(siteTripEventsElement, new SortingForm().getElement(), RenderPosition.BEFOREEND);
+render(siteTripEventsElement, new TravelForm().getElement(), RenderPosition.BEFOREEND);
+render(siteTripEventsElement, new TravelDaysList().getElement(), RenderPosition.BEFOREEND);
 
 const siteTripDaysListElement = document.querySelector(`.trip-days`);
 
-render(siteTripDaysListElement, createTravelDayElement(), `beforeend`);
+render(siteTripDaysListElement, new TravelDayElement(cards).getElement(), RenderPosition.BEFOREEND);
 
 const siteTripDaysElement = document.querySelector(`.trip-days__item`);
-render(siteTripDaysElement, createDailyRoute(), `beforeend`);
+render(siteTripDaysElement, new DailyRoute().getElement(), RenderPosition.BEFOREEND);
 
 const siteTripInDayElement = siteTripEventsElement.querySelector(`.trip-events__list`);
 for (let i = 0; i < cards.length; i++) {
-  render(siteTripInDayElement, createTravelCard(cards[i]), `beforeend`);
+  const card = new Card(cards[i]);
+  const cardEdit = new SortingForm(cards[i]);
+
+  card.getElement().querySelector(`.event__rollup-btn`).addEventListener(`click`, () => {
+    siteTripInDayElement.replaceChild(cardEdit.getElement(), card.getElement());
+    cardEdit.getElement().querySelector(`.event__reset-btn`).addEventListener(`click`, () => {
+      siteTripInDayElement.replaceChild(card.getElement(), cardEdit.getElement());
+    });
+
+    card.getElement().querySelector(`.event__rollup-btn`).addEventListener(`click`, () => {
+      siteTripInDayElement.replaceChild(cardEdit.getElement(), card.getElement());
+      cardEdit.getElement().querySelector(`.event__save-btn`).addEventListener(`click`, () => {
+        siteTripInDayElement.replaceChild(card.getElement(), cardEdit.getElement());
+      });
+    });
+  });
+
+  render(siteTripInDayElement, card.getElement(), RenderPosition.BEFOREEND);
 }

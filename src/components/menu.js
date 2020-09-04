@@ -1,4 +1,5 @@
 import {menuTemplate} from '../mocks/menu.js';
+import {createElement} from '../utils.js';
 
 const generateMenuTemplate = (menu) => {
   return menu.map((element) => (
@@ -12,4 +13,28 @@ export function createMenu() {
       ${generateMenuTemplate(menuTemplate)}
     </nav>`
   );
+}
+
+export default class Menu {
+  constructor(menu) {
+    this._menu = menu;
+    this._element = null;
+  }
+
+  getTemplate() {
+    return createMenu();
+  }
+
+  getElement() {
+    if (!this._element) {
+      this._element = createElement(this.getTemplate());
+    }
+
+    return this._element;
+  }
+
+  removeElement() {
+    this._element.remove();
+    this._element = null;
+  }
 }

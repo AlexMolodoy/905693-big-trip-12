@@ -1,7 +1,8 @@
+import {createElement} from '../utils.js';
+
 export function createTravelForm() {
   return (
-    `
-      <form class="trip-events__item  event  event--edit" action="#" method="post">
+    `<form class="trip-events__item  event  event--edit" action="#" method="post">
         <header class="event__header">
           <div class="event__type-wrapper">
             <label class="event__type  event__type-btn" for="event-type-toggle-1">
@@ -174,7 +175,28 @@ export function createTravelForm() {
             </div>
           </section>
         </section>
-      </form>
-    `
+      </form>`
   );
+}
+
+export default class TravelForm {
+  constructor(sortEvent) {
+    this._sortEvent = sortEvent;
+    this._element = null;
+  }
+  getTemplate() {
+    return createTravelForm();
+  }
+  getElement() {
+    if (!this._element) {
+      this._element = createElement(this.getTemplate());
+    }
+
+    return this._element;
+  }
+
+  removeElement() {
+    this._element.remove();
+    this._element = null;
+  }
 }
