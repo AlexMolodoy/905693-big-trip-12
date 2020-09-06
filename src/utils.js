@@ -25,3 +25,11 @@ export const render = (container, element, place) => {
       break;
   }
 };
+
+// export const onEscKeyDown = (evt) => {
+//   if (evt.key === `Escape` || evt.key === `Esc`) {
+//     evt.preventDefault();
+//     replaceFormToCard();
+//     document.removeEventListener(`keydown`, onEscKeyDown);
+//   }
+// };

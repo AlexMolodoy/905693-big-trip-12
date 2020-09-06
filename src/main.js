@@ -15,7 +15,7 @@ const siteCostTravelElement = document.querySelector(`.trip-main`);
 const siteTripControlsElement = document.querySelector(`.trip-controls`);
 const siteTripEventsElement = document.querySelector(`.trip-events`);
 
-render(siteCostTravelElement, new ShortRoute().getElement(), RenderPosition.BEFOREEND);
+render(siteCostTravelElement, new ShortRoute().getElement(), RenderPosition.AFTERBEGIN);
 
 const siteTripInfoElement = document.querySelector(`.trip-info`);
 
@@ -35,22 +35,37 @@ const siteTripDaysElement = document.querySelector(`.trip-days__item`);
 render(siteTripDaysElement, new DailyRoute().getElement(), RenderPosition.BEFOREEND);
 
 const siteTripInDayElement = siteTripEventsElement.querySelector(`.trip-events__list`);
+
+const onEscKeyDown = (evt, oldElement, newElement) => {
+  if (evt.key === `Escape` || evt.key === `Esc`) {
+    evt.preventDefault();
+    siteTripInDayElement.replaceChild(oldElement, newElement);
+    document.removeEventListener(`keydown`, onEscKeyDown);
+  }
+};
+
 for (let i = 0; i < cards.length; i++) {
   const card = new Card(cards[i]);
-  const cardEdit = new SortingForm(cards[i]);
+  const cardEdit = new TravelForm(cards[i]);
 
   card.getElement().querySelector(`.event__rollup-btn`).addEventListener(`click`, () => {
     siteTripInDayElement.replaceChild(cardEdit.getElement(), card.getElement());
     cardEdit.getElement().querySelector(`.event__reset-btn`).addEventListener(`click`, () => {
       siteTripInDayElement.replaceChild(card.getElement(), cardEdit.getElement());
     });
-
-    card.getElement().querySelector(`.event__rollup-btn`).addEventListener(`click`, () => {
-      siteTripInDayElement.replaceChild(cardEdit.getElement(), card.getElement());
-      cardEdit.getElement().querySelector(`.event__save-btn`).addEventListener(`click`, () => {
-        siteTripInDayElement.replaceChild(card.getElement(), cardEdit.getElement());
-      });
+    cardEdit.getElement().querySelector(`.event__save-btn`).addEventListener(`submit`, (evt) => {
+      evt.preventDefault();
+      siteTripInDayElement.replaceChild(card.getElement(), cardEdit.getElement());
     });
+    document.addEventListener(`keydown`, onEscKeyDown(card.getElement(), cardEdit.getElement()));
+
+
+    // card.getElement().querySelector(`.event__rollup-btn`).addEventListener(`click`, () => {
+    //   siteTripInDayElement.replaceChild(cardEdit.getElement(), card.getElement());
+    //   cardEdit.getElement().querySelector(`.event__save-btn`).addEventListener(`click`, () => {
+    //     siteTripInDayElement.replaceChild(card.getElement(), cardEdit.getElement());
+    //   });
+    // });
   });
 
   render(siteTripInDayElement, card.getElement(), RenderPosition.BEFOREEND);
