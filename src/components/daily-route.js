@@ -1,4 +1,4 @@
-import {createElement} from '../utils.js';
+import Abstract from './abstract.js';
 
 export function createDailyRoute() {
   return (
@@ -7,26 +7,13 @@ export function createDailyRoute() {
   );
 }
 
-export default class DailyRoute {
+export default class DailyRoute extends Abstract {
   constructor(dailyRoute) {
+    super();
     this._dailyRoute = dailyRoute;
-    this._element = null;
   }
 
   getTemplate() {
     return createDailyRoute();
-  }
-
-  getElement() {
-    if (!this._element) {
-      this._element = createElement(this.getTemplate());
-    }
-
-    return this._element;
-  }
-
-  removeElement() {
-    this._element.remove();
-    this._element = null;
   }
 }

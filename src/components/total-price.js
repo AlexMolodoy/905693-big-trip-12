@@ -1,4 +1,4 @@
-import {createElement} from '../utils.js';
+import Abstract from './abstract.js';
 
 export function createTotalPrice() {
   return (
@@ -8,24 +8,14 @@ export function createTotalPrice() {
   );
 }
 
-export default class TotalPrice {
-  constructor(sortEvent) {
-    this._sortEvent = sortEvent;
-    this._element = null;
+export default class TotalPrice extends Abstract {
+  constructor(price) {
+    super();
+    this._price = price;
   }
+
   getTemplate() {
     return createTotalPrice();
   }
-  getElement() {
-    if (!this._element) {
-      this._element = createElement(this.getTemplate());
-    }
-
-    return this._element;
-  }
-
-  removeElement() {
-    this._element.remove();
-    this._element = null;
-  }
 }
+

@@ -1,6 +1,6 @@
 import {MONTHS_MAP} from '../const.js';
 import {cards} from './card.js';
-import {createElement} from '../utils.js';
+import Abstract from './abstract.js';
 
 const citiesOnRoute = (array) => {
   const routeCities = [];
@@ -23,26 +23,13 @@ export function createShortRoute() {
   );
 }
 
-export default class ShortRoute {
+export default class ShortRoute extends Abstract {
   constructor(route) {
+    super();
     this._route = route;
-    this._element = null;
   }
 
   getTemplate() {
     return createShortRoute();
-  }
-
-  getElement() {
-    if (!this._element) {
-      this._element = createElement(this.getTemplate());
-    }
-
-    return this._element;
-  }
-
-  removeElement() {
-    this._element.remove();
-    this._element = null;
   }
 }

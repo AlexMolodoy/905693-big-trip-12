@@ -1,4 +1,3 @@
-import Card from './components/card.js';
 import Menu from './components/menu.js';
 import TotalPrice from './components/total-price.js';
 import ShortRoute from './components/short-route.js';
@@ -10,6 +9,7 @@ import FiltersTemplate from './components/filters-form.js';
 import SortingForm from './components/sorting-form.js';
 import {cards} from './components/card.js';
 import {render, RenderPosition} from './utils.js';
+import Trip from './presenters/trip-presenter.js';
 
 const siteCostTravelElement = document.querySelector(`.trip-main`);
 const siteTripControlsElement = document.querySelector(`.trip-controls`);
@@ -34,39 +34,36 @@ render(siteTripDaysListElement, new TravelDayElement(cards).getElement(), Render
 const siteTripDaysElement = document.querySelector(`.trip-days__item`);
 render(siteTripDaysElement, new DailyRoute().getElement(), RenderPosition.BEFOREEND);
 
-const siteTripInDayElement = siteTripEventsElement.querySelector(`.trip-events__list`);
+// const siteTripInDayElement = siteTripEventsElement.querySelector(`.trip-events__list`);
 
-const onEscKeyDown = (evt, oldElement, newElement) => {
-  if (evt.key === `Escape` || evt.key === `Esc`) {
-    evt.preventDefault();
-    siteTripInDayElement.replaceChild(oldElement, newElement);
-    document.removeEventListener(`keydown`, onEscKeyDown);
-  }
-};
+// for (let i = 0; i < cards.length; i++) {
+//   const card = new Card(cards[i]);
+//   const cardEdit = new TravelForm(cards[i]);
 
-for (let i = 0; i < cards.length; i++) {
-  const card = new Card(cards[i]);
-  const cardEdit = new TravelForm(cards[i]);
-
-  card.getElement().querySelector(`.event__rollup-btn`).addEventListener(`click`, () => {
-    siteTripInDayElement.replaceChild(cardEdit.getElement(), card.getElement());
-    cardEdit.getElement().querySelector(`.event__reset-btn`).addEventListener(`click`, () => {
-      siteTripInDayElement.replaceChild(card.getElement(), cardEdit.getElement());
-    });
-    cardEdit.getElement().querySelector(`.event__save-btn`).addEventListener(`submit`, (evt) => {
-      evt.preventDefault();
-      siteTripInDayElement.replaceChild(card.getElement(), cardEdit.getElement());
-    });
-    document.addEventListener(`keydown`, onEscKeyDown(card.getElement(), cardEdit.getElement()));
+//   card.getElement().querySelector(`.event__rollup-btn`).addEventListener(`click`, () => {
+//     siteTripInDayElement.replaceChild(cardEdit.getElement(), card.getElement());
+//     cardEdit.getElement().querySelector(`.event__reset-btn`).addEventListener(`click`, () => {
+//       siteTripInDayElement.replaceChild(card.getElement(), cardEdit.getElement());
+//     });
+//     cardEdit.getElement().querySelector(`.event__save-btn`).addEventListener(`submit`, (evt) => {
+//       evt.preventDefault();
+//       siteTripInDayElement.replaceChild(card.getElement(), cardEdit.getElement());
+//     });
+//     document.addEventListener(`keydown`, onEscKeyDown(card.getElement(), cardEdit.getElement()));
 
 
-    // card.getElement().querySelector(`.event__rollup-btn`).addEventListener(`click`, () => {
-    //   siteTripInDayElement.replaceChild(cardEdit.getElement(), card.getElement());
-    //   cardEdit.getElement().querySelector(`.event__save-btn`).addEventListener(`click`, () => {
-    //     siteTripInDayElement.replaceChild(card.getElement(), cardEdit.getElement());
-    //   });
-    // });
-  });
+//     // card.getElement().querySelector(`.event__rollup-btn`).addEventListener(`click`, () => {
+//     //   siteTripInDayElement.replaceChild(cardEdit.getElement(), card.getElement());
+//     //   cardEdit.getElement().querySelector(`.event__save-btn`).addEventListener(`click`, () => {
+//     //     siteTripInDayElement.replaceChild(card.getElement(), cardEdit.getElement());
+//     //   });
+//     // });
+//   });
 
-  render(siteTripInDayElement, card.getElement(), RenderPosition.BEFOREEND);
-}
+//   render(siteTripInDayElement, card.getElement(), RenderPosition.BEFOREEND);
+// }
+
+const trip = new Trip(siteTripEventsElement.querySelector(`.trip-days`));
+trip.render(cards);
+
+

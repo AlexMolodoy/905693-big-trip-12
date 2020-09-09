@@ -1,5 +1,5 @@
 import {filtersTemplate} from '../mocks/filters';
-import {createElement} from '../utils.js';
+import Abstract from './abstract.js';
 
 const generateFiltersTemplate = (menu) => {
   return menu.map((element) => (
@@ -19,26 +19,13 @@ export function createFiltersForm() {
   );
 }
 
-export default class FiltersTemplate {
+export default class FiltersTemplate extends Abstract {
   constructor(filter) {
+    super();
     this._filter = filter;
-    this._element = null;
   }
 
   getTemplate() {
     return createFiltersForm();
-  }
-
-  getElement() {
-    if (!this._element) {
-      this._element = createElement(this.getTemplate());
-    }
-
-    return this._element;
-  }
-
-  removeElement() {
-    this._element.remove();
-    this._element = null;
   }
 }

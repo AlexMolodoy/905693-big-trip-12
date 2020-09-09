@@ -1,4 +1,4 @@
-import {createElement} from '../utils.js';
+import Abstract from './abstract.js';
 
 export function createTravelDayElement() {
   return (
@@ -11,26 +11,13 @@ export function createTravelDayElement() {
   );
 }
 
-export default class TravelDayElement {
+export default class TravelDayElement extends Abstract {
   constructor(day) {
+    super();
     this._day = day;
-    this._element = null;
   }
 
   getTemplate() {
     return createTravelDayElement(this._day);
-  }
-
-  getElement() {
-    if (!this._element) {
-      this._element = createElement(this.getTemplate());
-    }
-
-    return this._element;
-  }
-
-  removeElement() {
-    this._element.remove();
-    this._element = null;
   }
 }

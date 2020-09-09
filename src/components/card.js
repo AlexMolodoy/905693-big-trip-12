@@ -1,5 +1,5 @@
 import {cardGenerate} from '../mocks/card.js';
-import {createElement} from '../utils.js';
+import Abstract from './abstract.js';
 
 const createCardArray = () => {
   const cardArray = [];
@@ -50,26 +50,20 @@ export function createTravelCard(card) {
   );
 }
 
-export default class Card {
+export default class Card extends Abstract {
   constructor(card) {
+    super();
     this._card = card;
-    this._element = null;
+
+    this._setEditHandler = this._setEditHandler.bind(this);
+
   }
 
   getTemplate() {
     return createTravelCard(this._card);
   }
 
-  getElement() {
-    if (!this._element) {
-      this._element = createElement(this.getTemplate());
-    }
-
-    return this._element;
-  }
-
-  removeElement() {
-    this._element.remove();
-    this._element = null;
+  _setEditHandler(handler) {
+    this.getElement().querySelector(`.event__rollup-btn`).addEventListener(`click`, handler);
   }
 }

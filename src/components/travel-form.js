@@ -1,4 +1,4 @@
-import {createElement} from '../utils.js';
+import Abstract from './abstract.js';
 
 export function createTravelForm() {
   return (
@@ -179,24 +179,26 @@ export function createTravelForm() {
   );
 }
 
-export default class TravelForm {
-  constructor(sortEvent) {
-    this._sortEvent = sortEvent;
-    this._element = null;
+export default class TravelForm extends Abstract {
+  constructor(travelElement) {
+    super();
+    this._travelElement = travelElement;
+
+    this._setSubmitHandler = this._setSubmitHandler.bind(this);
+    this._setCloseHandler = this._setCloseHandler.bind(this);
+
   }
+
   getTemplate() {
     return createTravelForm();
   }
-  getElement() {
-    if (!this._element) {
-      this._element = createElement(this.getTemplate());
-    }
 
-    return this._element;
+  _setSubmitHandler(handler) {
+    this.getElement().querySelector(`.event__save-btn`).addEventListener(`click`, handler);
   }
 
-  removeElement() {
-    this._element.remove();
-    this._element = null;
+  _setCloseHandler(handler) {
+    this.getElement().querySelector(`.event__reset-btn`).addEventListener(`click`, handler);
   }
 }
+
