@@ -1,25 +1,34 @@
-import {Card} from '../components/card.js';
-import {TravelForm} from '../components/travel-form.js';
-import {replace, render} from '../utils.js';
+import Card from '../components/card.js';
+import {render, RenderPosition} from '../utils.js';
 
-function renderCard(_card) {
-  const card = new Card(_card);
-  const cardEdit = new TravelForm(_card);
+import {cards} from '../components/card.js';
 
-  card.setEditHandler(() => {
+import TravelForm from '../components/travel-form.js';
+import DailyRoute from '../components/daily-route.js';
+import {replace} from '../utils.js';
+
+export function createDailyTrip(element) {
+
+  const card = new Card(element);
+  const cardEdit = new TravelForm(element);
+
+  card._setEditHandler(() => {
     replace(cardEdit, card);
-    cardEdit.setCloseHandler(() => {
+    cardEdit._setCloseHandler(() => {
       replace(card, cardEdit);
     });
-    cardEdit.setSubmitHandler((evt) => {
+    cardEdit._setSubmitHandler((evt) => {
       evt.preventDefault();
       replace(card, cardEdit);
     });
   });
+
+
   return card.getElement();
 }
 
-export class Trip {
+
+export default class Trip {
   constructor(container) {
     this._container = container;
 
@@ -28,7 +37,12 @@ export class Trip {
   }
   render(events) {
     events.forEach((event) =>{
-      render(this._container, renderCard(event));
+      render(this._container, createDailyTrip(event), RenderPosition.BEFOREEND);
     });
   }
 }
+
+export const dailyRouteElement = new DailyRoute().getElement();
+
+export const tripArray = new Trip(dailyRouteElement);
+tripArray.render(cards);

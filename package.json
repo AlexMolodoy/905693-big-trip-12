@@ -7,7 +7,7 @@
   "scripts": {
     "build": "webpack",
     "eslint": "eslint src/**/*.js",
-    "start": "webpack-dev-server --open --watch",
+    "start": "webpack-dev-server --open --watch --mode-development",
     "test": "npm run eslint"
   },
   "devDependencies": {

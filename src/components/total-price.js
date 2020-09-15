@@ -8,6 +8,7 @@ export function createTotalPrice() {
   );
 }
 
+
 export default class TotalPrice extends Abstract {
   constructor(price) {
     super();
@@ -18,4 +19,3 @@ export default class TotalPrice extends Abstract {
     return createTotalPrice();
   }
 }
-

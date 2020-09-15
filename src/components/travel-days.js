@@ -1,4 +1,7 @@
 import Abstract from './abstract.js';
+// import {cards} from './card.js';
+import {daysItemElement} from './day-element.js';
+import {render, RenderPosition} from '../utils.js';
 
 export function createTravelDaysList() {
   return (
@@ -17,3 +20,6 @@ export default class TravelDaysList extends Abstract {
   }
 }
 
+export const daysListElement = new TravelDaysList().getElement();
+
+render(daysListElement, daysItemElement, RenderPosition.BEFOREEND);

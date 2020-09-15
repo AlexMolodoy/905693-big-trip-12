@@ -1,69 +1,19 @@
-import Menu from './components/menu.js';
-import TotalPrice from './components/total-price.js';
-import ShortRoute from './components/short-route.js';
-import DailyRoute from './components/daily-route.js';
-import TravelDaysList from './components/travel-days.js';
-import TravelDayElement from './components/day-element.js';
-import TravelForm from './components/travel-form.js';
-import FiltersTemplate from './components/filters-form.js';
-import SortingForm from './components/sorting-form.js';
-import {cards} from './components/card.js';
+import {headerNode} from './components/header.js';
+import {bodyNode} from './components/body.js';
+
 import {render, RenderPosition} from './utils.js';
-import Trip from './presenters/trip-presenter.js';
 
-const siteCostTravelElement = document.querySelector(`.trip-main`);
-const siteTripControlsElement = document.querySelector(`.trip-controls`);
-const siteTripEventsElement = document.querySelector(`.trip-events`);
+const renderFlagHeader = document.querySelector(`.page-header__container`);
 
-render(siteCostTravelElement, new ShortRoute().getElement(), RenderPosition.AFTERBEGIN);
+render(renderFlagHeader, headerNode, RenderPosition.BEFOREEND);
 
-const siteTripInfoElement = document.querySelector(`.trip-info`);
+const renderFlagBody = document.querySelector(`.page-main`);
 
-render(siteTripInfoElement, new TotalPrice().getElement(), RenderPosition.BEFOREEND);
-render(siteTripControlsElement, new Menu().getElement(), RenderPosition.BEFOREEND);
-render(siteTripControlsElement, new FiltersTemplate().getElement(), RenderPosition.BEFOREEND);
+render(renderFlagBody, bodyNode, RenderPosition.BEFOREEND);
 
-render(siteTripEventsElement, new SortingForm().getElement(), RenderPosition.BEFOREEND);
-render(siteTripEventsElement, new TravelForm().getElement(), RenderPosition.BEFOREEND);
-render(siteTripEventsElement, new TravelDaysList().getElement(), RenderPosition.BEFOREEND);
+// import Trip from './presenters/trip-presenter.js';
 
-const siteTripDaysListElement = document.querySelector(`.trip-days`);
-
-render(siteTripDaysListElement, new TravelDayElement(cards).getElement(), RenderPosition.BEFOREEND);
-
-const siteTripDaysElement = document.querySelector(`.trip-days__item`);
-render(siteTripDaysElement, new DailyRoute().getElement(), RenderPosition.BEFOREEND);
-
-// const siteTripInDayElement = siteTripEventsElement.querySelector(`.trip-events__list`);
-
-// for (let i = 0; i < cards.length; i++) {
-//   const card = new Card(cards[i]);
-//   const cardEdit = new TravelForm(cards[i]);
-
-//   card.getElement().querySelector(`.event__rollup-btn`).addEventListener(`click`, () => {
-//     siteTripInDayElement.replaceChild(cardEdit.getElement(), card.getElement());
-//     cardEdit.getElement().querySelector(`.event__reset-btn`).addEventListener(`click`, () => {
-//       siteTripInDayElement.replaceChild(card.getElement(), cardEdit.getElement());
-//     });
-//     cardEdit.getElement().querySelector(`.event__save-btn`).addEventListener(`submit`, (evt) => {
-//       evt.preventDefault();
-//       siteTripInDayElement.replaceChild(card.getElement(), cardEdit.getElement());
-//     });
-//     document.addEventListener(`keydown`, onEscKeyDown(card.getElement(), cardEdit.getElement()));
-
-
-//     // card.getElement().querySelector(`.event__rollup-btn`).addEventListener(`click`, () => {
-//     //   siteTripInDayElement.replaceChild(cardEdit.getElement(), card.getElement());
-//     //   cardEdit.getElement().querySelector(`.event__save-btn`).addEventListener(`click`, () => {
-//     //     siteTripInDayElement.replaceChild(card.getElement(), cardEdit.getElement());
-//     //   });
-//     // });
-//   });
-
-//   render(siteTripInDayElement, card.getElement(), RenderPosition.BEFOREEND);
-// }
-
-const trip = new Trip(siteTripEventsElement.querySelector(`.trip-days`));
-trip.render(cards);
+// const trip = new Trip(siteTripEventsElement.querySelector(`.trip-days`));
+// trip.render(cards);
 
 
