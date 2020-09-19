@@ -1,5 +1,4 @@
 import Abstract from './abstract.js';
-// import {cards} from './card.js';
 import {daysItemElement} from './day-element.js';
 import {render, RenderPosition} from '../utils.js';
 

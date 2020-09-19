@@ -39,9 +39,17 @@ export default class SortingForm extends Abstract {
   constructor(sort) {
     super();
     this._sort = sort;
+
+    this.setSortHandler = this.setSortHandler.bind(this);
   }
 
   getTemplate() {
     return createSortingForm();
   }
+
+  setSortHandler(handler) {
+    this.getElement().querySelector(`.trip-sort__input`).addEventListener(`click`, handler);
+  }
+
+
 }

@@ -3,6 +3,7 @@ import TravelForm from './travel-form.js';
 import {daysListElement} from './travel-days.js';
 import Abstract from './abstract.js';
 import {render, RenderPosition} from '../utils.js';
+import Sort from '../presenters/sort-presenter.js';
 
 export function createBody() {
   return (
@@ -28,7 +29,13 @@ export default class Body extends Abstract {
 }
 
 export const bodyNode = new Body().getElement();
+export const sortingForm = new SortingForm();
 
-render(bodyNode, new SortingForm().getElement(), RenderPosition.BEFOREEND);
+render(bodyNode, sortingForm.getElement(), RenderPosition.BEFOREEND);
+sortingForm.setSortHandler(() => {
+  new Sort().rerender(sortingForm.getElement().value);
+  sortingForm.setSortHandler(() =>
+    new Sort().rerender(sortingForm.getElement().value));
+});
 render(bodyNode, new TravelForm().getElement(), RenderPosition.BEFOREEND);
 render(bodyNode, daysListElement, RenderPosition.BEFOREEND);

@@ -21,6 +21,7 @@ export function createDailyTrip(element) {
       evt.preventDefault();
       replace(card, cardEdit);
     });
+    cardEdit._setCloseEscHandler(card.getElement());
   });
 
 
@@ -36,7 +37,7 @@ export default class Trip {
     // this.elementLoading = ''
   }
   render(events) {
-    events.forEach((event) =>{
+    events.forEach((event) => {
       render(this._container, createDailyTrip(event), RenderPosition.BEFOREEND);
     });
   }

@@ -13,6 +13,20 @@ const MONTHS_MAP = [
   `DEC`,
 ];
 
+const SortType = {
+  EVENT: `sort-event`,
+  TIME: `sort-time`,
+  PRICE: `sort-price`
+};
+
+const FilterType = {
+  EVERYTHING: `everything`,
+  FUTURE: `future`,
+  PAST: `past`,
+};
+
 export {
-  MONTHS_MAP
+  MONTHS_MAP,
+  SortType,
+  FilterType,
 };
