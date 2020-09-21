@@ -212,7 +212,7 @@ export default class TravelForm extends Abstract {
   }
 
   _setCloseEscHandler(newElement) {
-    this.getElement().querySelector(`.event__reset-btn`).addEventListener(`click`, onEscKeyDown(this.getElement(), newElement));
+    this.getElement().querySelector(`.event__reset-btn`).addEventListener(`click`, ((event) => onEscKeyDown(event, this.getElement(), newElement)));
   }
 }
 

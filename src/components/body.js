@@ -4,6 +4,7 @@ import {daysListElement} from './travel-days.js';
 import Abstract from './abstract.js';
 import {render, RenderPosition} from '../utils.js';
 import Sort from '../presenters/sort-presenter.js';
+import {cards} from './card.js';
 
 export function createBody() {
   return (
@@ -32,10 +33,10 @@ export const bodyNode = new Body().getElement();
 export const sortingForm = new SortingForm();
 
 render(bodyNode, sortingForm.getElement(), RenderPosition.BEFOREEND);
-sortingForm.setSortHandler(() => {
-  new Sort().rerender(sortingForm.getElement().value);
-  sortingForm.setSortHandler(() =>
-    new Sort().rerender(sortingForm.getElement().value));
-});
 render(bodyNode, new TravelForm().getElement(), RenderPosition.BEFOREEND);
 render(bodyNode, daysListElement, RenderPosition.BEFOREEND);
+
+sortingForm.setSortHandler(() => {
+  console.log(`123`);
+  new Sort(daysListElement).rerender(bodyNode, cards);
+});
