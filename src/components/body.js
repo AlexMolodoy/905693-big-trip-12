@@ -37,6 +37,5 @@ render(bodyNode, new TravelForm().getElement(), RenderPosition.BEFOREEND);
 render(bodyNode, daysListElement, RenderPosition.BEFOREEND);
 
 sortingForm.setSortHandler(() => {
-  console.log(`123`);
   new Sort(daysListElement).rerender(bodyNode, cards);
 });
