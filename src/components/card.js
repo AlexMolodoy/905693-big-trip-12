@@ -12,6 +12,26 @@ const createCardArray = () => {
 export const cards = createCardArray();
 
 export function createTravelCard(card) {
+
+  function createOffersTemplate(offers) {
+    if (!offers) {
+      return ``;
+    }
+
+    const rez = offers.map((offer) => {
+      return (
+        `<li class="event__offer">
+          <span class="event__offer-title">${offer.name}</span>
+          &plus;
+          &euro;&nbsp;<span class="event__offer-price">${offer.cost}</span>
+        </li>`
+      );
+    });
+
+    return rez;
+
+  }
+
   return (
     `<li class="trip-events__item">
         <div class="event">
@@ -30,16 +50,12 @@ export function createTravelCard(card) {
           </div>
 
           <p class="event__price">
-            &euro;&nbsp;<span class="event__price-value">20</span>
+            &euro;&nbsp;<span class="event__price-value">${card.price}</span>
           </p>
 
           <h4 class="visually-hidden">Offers:</h4>
           <ul class="event__selected-offers">
-            <li class="event__offer">
-              <span class="event__offer-title">Order Uber</span>
-              &plus;
-              &euro;&nbsp;<span class="event__offer-price">20</span>
-            </li>
+          ${createOffersTemplate(card.offer)}
           </ul>
 
           <button class="event__rollup-btn" type="button">

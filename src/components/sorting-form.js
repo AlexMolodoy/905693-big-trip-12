@@ -41,15 +41,27 @@ export default class SortingForm extends Abstract {
     super();
     this._sort = sort;
 
-    this.setSortHandler = this.setSortHandler.bind(this);
+    this.setSortTimeHandler = this.setSortTimeHandler.bind(this);
+    this.setSortEventHandler = this.setSortEventHandler.bind(this);
+    this.setSortPriceHandler = this.setSortPriceHandler.bind(this);
+
   }
+
 
   getTemplate() {
     return createSortingForm();
   }
 
-  setSortHandler(handler) {
-    this.getElement().querySelector(`.trip-sort__btn`).addEventListener(`click`, handler);
+  setSortTimeHandler(handler) {
+    this.getElement().querySelector(`#sort-time`).addEventListener(`click`, handler);
+  }
+
+  setSortEventHandler(handler) {
+    this.getElement().querySelector(`#sort-event`).addEventListener(`click`, handler);
+  }
+
+  setSortPriceHandler(handler) {
+    this.getElement().querySelector(`#sort-price`).addEventListener(`click`, handler);
   }
 
 }

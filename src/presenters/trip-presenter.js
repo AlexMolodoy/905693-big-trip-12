@@ -1,13 +1,12 @@
-import Card from '../components/card.js';
-import {render, RenderPosition} from '../utils.js';
+import {render, RenderPosition, replace} from '../utils.js';
+import Card, {cards} from '../components/card.js';
 
-import {cards} from '../components/card.js';
-
-import TravelForm from '../components/travel-form.js';
 import DailyRoute from '../components/daily-route.js';
-import {replace} from '../utils.js';
+import TravelForm from '../components/travel-form.js';
 
-export function createDailyTrip(element) {
+// import AbstractPresenter from './abstract-presenter.js';
+
+export function createTrip(element) {
 
   const card = new Card(element);
   const cardEdit = new TravelForm(element);
@@ -38,7 +37,7 @@ export default class Trip {
   }
   render(events) {
     events.forEach((event) => {
-      render(this._container, createDailyTrip(event), RenderPosition.BEFOREEND);
+      render(this._container, createTrip(event), RenderPosition.BEFOREEND);
     });
   }
 }

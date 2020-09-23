@@ -1,12 +1,11 @@
-import TravelDaysList from '../components/travel-days.js';
-import {render, RenderPosition, sortingEvents} from '../utils.js';
+import {render, RenderPosition, filteringEvents} from '../utils.js';
 import {createTrip} from './trip-presenter.js';
 
-export default class Sort {
+export default class Filter {
 
-  constructor() {
+  constructor(container) {
 
-    this._container = new TravelDaysList().getElement();
+    this._container = container;
 
     this._removePreSortEvents = this._removePreSortEvents.bind(this);
     this.rerender = this.rerender.bind(this);
@@ -20,11 +19,10 @@ export default class Sort {
   rerender(element, sortType) {
     this._removePreSortEvents();
     render(element, this._container, RenderPosition.BEFOREEND);
-    sortingEvents();
-    sortingEvents(sortType).forEach((event) => {
+    filteringEvents();
+    filteringEvents(sortType).forEach((event) => {
       render(this._container, createTrip(event), RenderPosition.BEFOREEND);
     });
   }
 
 }
-

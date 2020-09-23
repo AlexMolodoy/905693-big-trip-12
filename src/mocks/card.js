@@ -1,5 +1,14 @@
 const typeEvent = [
-  `bus`, `check-in`, `drive`, `flight`, `restaurant`, `ship`, `sightseeng`, `taxi`, `train`, `transport`, `trip`,
+  `Taxi`,
+  `Bus`,
+  `Train`,
+  `Ship`,
+  `Transport`,
+  `Drive`,
+  `Flight`,
+  `Check`,
+  `Sightseeing`,
+  `Restaurant`
 ];
 
 const tripCity = [
@@ -54,6 +63,17 @@ function getRandomNextDate(date, start = 1000, stop = 8035200000) {
   return new Date(Date.parse(date) + getRandomNumber(start, stop));
 }
 
+const generatePhoto = () => {
+  const MIN_PHOTO = 1;
+  const MAX_PHOTO = 5;
+  const randomIndex = getRandomNumber(MIN_PHOTO, MAX_PHOTO);
+  const photos = [];
+  for (let i = 0; i < randomIndex; i++) {
+    photos.push(`http://picsum.photos/248/152?r=${Math.random()}`);
+  }
+  return photos;
+};
+
 export const cardGenerate = () => {
   const startDate = getRandomDate();
   const endDate = getRandomNextDate(startDate);
@@ -62,12 +82,14 @@ export const cardGenerate = () => {
   return {
     type: getRandomElement(typeEvent),
     city: getRandomElement(tripCity),
-    photo: `http://picsum.photos/300/150?r=${Math.random()}`,
-    description: getRandomElemntUnique(titles, getRandomNumber(1, 3)),
+    photo: generatePhoto(),
+    description: getRandomElemntUnique(titles, getRandomNumber(3, 5)),
     price: getRandomNumber(20, 100),
     startEvent: startDate,
     endEvent: endDate,
     eventDuration: duration,
-    addOptions: OFFERS.slice(-2),
+    offer: OFFERS.slice(getRandomNumber(0, 3)),
   };
 };
+
+
