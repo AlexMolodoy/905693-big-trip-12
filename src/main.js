@@ -11,6 +11,10 @@ const renderFlagBody = document.querySelector(`.page-main`);
 
 render(renderFlagBody, bodyNode, RenderPosition.BEFOREEND);
 
+// headerNode.querySelector(`.trip-main__event-add-btn`).addEventListener(`click`, ()=>{
+
+// });
+
 // import Trip from './presenters/trip-presenter.js';
 
 // const trip = new Trip(siteTripEventsElement.querySelector(`.trip-days`));

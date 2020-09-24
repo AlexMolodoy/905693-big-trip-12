@@ -1,5 +1,7 @@
 // import {filtersTemplate} from '../mocks/filters';
 import Abstract from './abstract.js';
+// import {cards} from './card.js';
+
 
 // const generateFiltersTemplate = (menu) => {
 //   return menu.map((element) => (
@@ -9,6 +11,41 @@ import Abstract from './abstract.js';
 //     </div>\n`
 //   )).join(``);
 // };
+
+// function filterTypePast(event) {
+//   if (event.endDate < new Date()) {
+//     return true;
+//   }
+// }
+
+// function filterTypeFuture(event) {
+//   if (event.startDate > new Date()) {
+//     return true;
+//   }
+// }
+
+// export const filterTypeEverithing = () => {
+//   tripArray.render(cards);
+// };
+
+// export function filteringEvents(filterType) {
+
+//   const filteredCards = cards;
+
+//   switch (filterType) {
+//     case `everything`:
+//       filteredCards.filter(filterTypeEverithing);
+//       break;
+//     case `future`:
+//       filteredCards.filter(filterTypeFuture);
+//       break;
+//     case `past`:
+//       filteredCards.filter(filterTypePast);
+//       break;
+//   }
+
+//   return filteredCards;
+// }
 
 
 export function createFiltersForm() {

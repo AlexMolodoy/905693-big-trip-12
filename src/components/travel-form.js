@@ -140,7 +140,7 @@ export function createTravelForm(card) {
           </div>
 
           <button class="event__save-btn  btn  btn--blue" type="submit">Save</button>
-          <button class="event__reset-btn" type="reset">Cancel</button>
+          <button class="event__reset-btn" type="reset">Delete</button>
 
           <input id="event-favorite-1" class="event__favorite-checkbox  visually-hidden" type="checkbox" name="event-favorite" >
           <label class="event__favorite-btn" for="event-favorite-1">
@@ -198,7 +198,15 @@ export default class TravelForm extends Abstract {
   }
 
   _setCloseEscHandler(newElement) {
-    this.getElement().querySelector(`.event__reset-btn`).addEventListener(`click`, ((event) => onEscKeyDown(event, this.getElement(), newElement)));
+    this.getElement().addEventListener(`click`, ((event) => onEscKeyDown(event, this.getElement(), newElement)));
+  }
+
+  _setFavoriteHandler(handler) {
+    this.getElement().querySelector(`.event__favorite-btn`).addEventListener(`click`, handler);
+  }
+
+  _setTypeEventHandler(handler) {
+    this.getElement().querySelector(`.event__type-list`).addEventListener(`change`, handler);
   }
 }
 

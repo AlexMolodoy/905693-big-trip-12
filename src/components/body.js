@@ -55,4 +55,4 @@ render(bodyNode, sortingForm.getElement(), RenderPosition.BEFOREEND);
 render(bodyNode, new TravelForm(cards[0]).getElement(), RenderPosition.BEFOREEND);
 render(bodyNode, daysListElement, RenderPosition.BEFOREEND);
 
-// addEventSortingListeners();
+addEventSortingListeners();

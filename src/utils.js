@@ -1,4 +1,3 @@
-import {cards} from './components/card.js';
 // import {tripArray} from './presenters/trip-presenter.js';
 
 export const COUNT_OF_TRIPELEMENTS = 3;
@@ -48,70 +47,3 @@ export const onEscKeyDown = (evt, oldElement, newElement) => {
     document.removeEventListener(`keydown`, onEscKeyDown);
   }
 };
-
-export const sortTypeEvent = (eventA, eventB) => {
-  return eventA.startDate - eventB.startDate;
-};
-
-export const sortTypeTime = (timeA, timeB) => {
-  return timeB.eventDuration - timeA.eventDuration;
-};
-
-export const sortTypePrice = (priceA, priceB) => {
-  return priceB.price - priceA.price;
-};
-
-export function sortingEvents(sortType) {
-
-  const sortedCards = cards;
-
-  switch (sortType) {
-    case `sort-event`:
-      sortedCards.sort(sortTypeEvent);
-      break;
-    case `sort-time`:
-      sortedCards.sort(sortTypeTime);
-      break;
-    case `sort-price`:
-      sortedCards.sort(sortTypePrice);
-      break;
-  }
-
-  return sortedCards;
-}
-
-// function filterTypePast(event) {
-//   if (event.endDate < new Date()) {
-//     return true;
-//   }
-// }
-
-// function filterTypeFuture(event) {
-//   if (event.startDate > new Date()) {
-//     return true;
-//   }
-// }
-
-// export const filterTypeEverithing = () => {
-//   tripArray.render(cards);
-// };
-
-// export function filteringEvents(filterType) {
-
-//   const filteredCards = cards;
-
-//   switch (filterType) {
-//     case `everything`:
-//       filteredCards.filter(filterTypeEverithing);
-//       break;
-//     case `future`:
-//       filteredCards.filter(filterTypeFuture);
-//       break;
-//     case `past`:
-//       filteredCards.filter(filterTypePast);
-//       break;
-//   }
-
-//   return filteredCards;
-// }
-
