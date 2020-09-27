@@ -91,5 +91,3 @@ export const cardGenerate = () => {
     offer: OFFERS.slice(getRandomNumber(0, 3)),
   };
 };
-
-

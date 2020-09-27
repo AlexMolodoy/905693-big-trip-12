@@ -25,6 +25,7 @@ export function addEventSortingListeners() {
 
 }
 
+
 export function createBody() {
   return (
     `<div class="page-body__container">
@@ -48,7 +49,7 @@ export default class Body extends Abstract {
   }
 }
 
-export const bodyNode = new Body().getElement();
+export const bodyNode = new Body().getElement().querySelector(`.trip-events`);
 export const sortingForm = new SortingForm();
 
 render(bodyNode, sortingForm.getElement(), RenderPosition.BEFOREEND);
@@ -56,3 +57,4 @@ render(bodyNode, new TravelForm(cards[0]).getElement(), RenderPosition.BEFOREEND
 render(bodyNode, daysListElement, RenderPosition.BEFOREEND);
 
 addEventSortingListeners();
+

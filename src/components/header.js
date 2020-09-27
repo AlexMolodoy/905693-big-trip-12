@@ -3,6 +3,26 @@ import Menu from './menu.js';
 import Abstract from './abstract.js';
 import FiltersTemplate from './filters-form.js';
 import {render, RenderPosition} from '../utils.js';
+import Filter from '../presenters/filter-presenter.js';
+
+export function addEventFilteringListeners() {
+
+  filteringForm.setFilterEverythingHandler(() => {
+    const filterType = filteringForm.getElement().querySelector(`#filter-everything`).value;
+    new Filter().rerender(filterType);
+  });
+
+  filteringForm.setFilterFutureHandler(() => {
+    const filterType = filteringForm.getElement().querySelector(`#filter-future`).value;
+    new Filter().rerender(filterType);
+  });
+
+  filteringForm.setFilterPastHandler(() => {
+    const filterType = filteringForm.getElement().querySelector(`#filter-past`).value;
+    new Filter().rerender(filterType);
+  });
+
+}
 
 export function createHeader() {
   return (
@@ -34,8 +54,12 @@ export default class Header extends Abstract {
   }
 }
 
+export const filteringForm = new FiltersTemplate();
+
 export const headerNode = new Header().getElement();
 
 render(headerNode, shortRouteNode.getElement(), RenderPosition.AFTERBEGIN);
 render(headerNode.querySelector(`.trip-controls`), new Menu().getElement(), RenderPosition.AFTERBEGIN);
-render(headerNode.querySelector(`.trip-controls`), new FiltersTemplate().getElement(), RenderPosition.BEFOREEND);
+render(headerNode.querySelector(`.trip-controls`), filteringForm.getElement(), RenderPosition.BEFOREEND);
+
+addEventFilteringListeners();

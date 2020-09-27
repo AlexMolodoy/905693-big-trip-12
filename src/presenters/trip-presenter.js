@@ -1,10 +1,6 @@
 import {render, RenderPosition, replace} from '../utils.js';
-import Card, {cards} from '../components/card.js';
-
-import DailyRoute from '../components/daily-route.js';
+import Card from '../components/card.js';
 import TravelForm from '../components/travel-form.js';
-
-// import AbstractPresenter from './abstract-presenter.js';
 
 export function createTrip(element) {
 
@@ -42,7 +38,3 @@ export default class Trip {
   }
 }
 
-export const dailyRouteElement = new DailyRoute().getElement();
-
-export const tripArray = new Trip(dailyRouteElement);
-tripArray.render(cards);

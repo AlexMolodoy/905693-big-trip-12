@@ -3,6 +3,7 @@ import {bodyNode} from './components/body.js';
 
 import {render, RenderPosition} from './utils.js';
 
+
 const renderFlagHeader = document.querySelector(`.page-header__container`);
 
 render(renderFlagHeader, headerNode, RenderPosition.BEFOREEND);

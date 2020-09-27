@@ -1,52 +1,4 @@
-// import {filtersTemplate} from '../mocks/filters';
 import Abstract from './abstract.js';
-// import {cards} from './card.js';
-
-
-// const generateFiltersTemplate = (menu) => {
-//   return menu.map((element) => (
-//     `<div class="trip-filters__filter">
-//       <input id="filter-${element.value}" class="trip-filters__filter-input  visually-hidden" type="radio" name="trip-filter" value="${element.value}" ${element.isChecked ? `checked` : ``}>
-//       <label class="trip-filters__filter-label" for="filter-everything">${element.title}</label>
-//     </div>\n`
-//   )).join(``);
-// };
-
-// function filterTypePast(event) {
-//   if (event.endDate < new Date()) {
-//     return true;
-//   }
-// }
-
-// function filterTypeFuture(event) {
-//   if (event.startDate > new Date()) {
-//     return true;
-//   }
-// }
-
-// export const filterTypeEverithing = () => {
-//   tripArray.render(cards);
-// };
-
-// export function filteringEvents(filterType) {
-
-//   const filteredCards = cards;
-
-//   switch (filterType) {
-//     case `everything`:
-//       filteredCards.filter(filterTypeEverithing);
-//       break;
-//     case `future`:
-//       filteredCards.filter(filterTypeFuture);
-//       break;
-//     case `past`:
-//       filteredCards.filter(filterTypePast);
-//       break;
-//   }
-
-//   return filteredCards;
-// }
-
 
 export function createFiltersForm() {
   return (
@@ -72,9 +24,8 @@ export function createFiltersForm() {
 }
 
 export default class FiltersTemplate extends Abstract {
-  constructor(filter) {
+  constructor() {
     super();
-    this._filter = filter;
 
     this.setFilterPastHandler = this.setFilterPastHandler.bind(this);
     this.setFilterFutureHandler = this.setFilterFutureHandler.bind(this);
@@ -87,7 +38,7 @@ export default class FiltersTemplate extends Abstract {
   }
 
   setFilterEverythingHandler(handler) {
-    this.getElement().querySelector(`#filter-everythinge`).addEventListener(`click`, handler);
+    this.getElement().querySelector(`#filter-everything`).addEventListener(`click`, handler);
   }
 
   setFilterFutureHandler(handler) {

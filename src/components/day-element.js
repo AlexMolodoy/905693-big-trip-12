@@ -1,27 +1,17 @@
 import Abstract from './abstract.js';
-import {dailyRouteElement} from '../presenters/trip-presenter.js';
-import {render, RenderPosition} from '../utils.js';
+// import {daysFiltEvent} from './travel-days.js';
+
+// import {dailyRouteElement} from '../presenters/trip-presenter.js';
+// import {render, RenderPosition} from '../utils.js';
 // import {cards} from './card.js';
 
-export function createTravelDayElement(days) {
-
-  // const DAYS_ARRAY = new Set(() => {
-  //   const tmpArray = [];
-  //   events.map(tmpArray.push(event.startDate.getDate()));
-  //   return tmpArray;
-  // });
-
-  // const MONTHS_ARRAY = new Set(() => {
-  //   const tmpArray = [];
-  //   events.map(tmpArray.push(event.startDate.getMonth()));
-  //   return tmpArray;
-  // });
+export function createTravelDayElement(number, day) {
 
   return (
     `<li class="trip-days__item  day">
         <div class="day__info">
-          <span class="day__counter">${days.number}</span>
-          <time class="day__date" datetime="2019-03-18">${days.date}</time>
+          <span class="day__counter">${number}</span>
+          <time class="day__date" datetime="2019-03-18">${day}</time>
         </div>
 
       </li>`
@@ -29,21 +19,14 @@ export function createTravelDayElement(days) {
 }
 
 export default class TravelDayElement extends Abstract {
-  constructor(day) {
+  constructor(number, day) {
     super();
     this._day = day;
+    this._number = number;
   }
 
   getTemplate() {
-    return createTravelDayElement(this._day);
+    return createTravelDayElement(this._number, this._day);
   }
 }
 
-const days = [
-  {number: 1, date: `18 - MAR`},
-  {number: 2, date: `19 - MAR`},
-];
-
-export const daysItemElement = new TravelDayElement(days[0]).getElement();
-
-render(daysItemElement, dailyRouteElement, RenderPosition.BEFOREEND);

@@ -1,5 +1,24 @@
-import {render, RenderPosition, filteringEvents} from '../utils.js';
-import {createTrip} from './trip-presenter.js';
+import {render, RenderPosition} from '../utils.js';
+import TravelDaysList, {daysFiltEvent, renderAll} from '../components/travel-days.js';
+import {bodyNode} from '../components/body.js';
+export function filteringEvents(filterType) {
+
+  let filteredCards = [];
+
+  switch (filterType) {
+    case `everything`:
+      filteredCards = daysFiltEvent;
+      break;
+    case `future`:
+      filteredCards = daysFiltEvent.filter((filteredCard) => filteredCard[0].startEvent > Date.now());
+      break;
+    case `past`:
+      filteredCards = daysFiltEvent.filter((filteredCard) => filteredCard[0].startEvent < Date.now());
+      break;
+  }
+
+  return filteredCards;
+}
 
 export default class Filter {
 
@@ -16,13 +35,13 @@ export default class Filter {
     document.querySelector(`.trip-days`).remove();
   }
 
-  rerender(element, sortType) {
+  rerender(filterType) {
+
+    const filteredArray = filteringEvents(filterType);
     this._removePreSortEvents();
-    render(element, this._container, RenderPosition.BEFOREEND);
-    filteringEvents();
-    filteringEvents(sortType).forEach((event) => {
-      render(this._container, createTrip(event), RenderPosition.BEFOREEND);
-    });
+    const filteredArrayElement = new TravelDaysList().getElement();
+    renderAll(filteredArray, filteredArrayElement);
+    render(bodyNode, filteredArrayElement, RenderPosition.BEFOREEND);
   }
 
 }
