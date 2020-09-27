@@ -11,7 +11,7 @@ export default class HttpClient {
       if (token) {
         config.headers.common[`Authorization`] = token;
       }
-      // console.log(config);
+      // // console.log(config);
       return config;
     }, (error) => {
       // обрабатываем ошибку
@@ -25,18 +25,18 @@ export default class HttpClient {
   }
 
   _validateParams(value) {
-    // console.log(value);
+    // // console.log(value);
 
     return value && Object.prototype.toString.call(value) === `[object Object]`;
   }
   get(path, params = {}) {
-    // console.log(path);
+    // // console.log(path);
     if (!this._validatePath(path)) {
-      // console.log(path);
+      // // console.log(path);
       throw new Error(`invalid path type`);
     }
     if (!this._validateParams(params)) {
-      // console.log(params);
+      // // console.log(params);
       throw new Error(`invalid params type`);
     }
     return this._client({
@@ -48,20 +48,20 @@ export default class HttpClient {
         // Запрос выполнен и сервер отправил вам статус код
         // код выпадает из диапазона 2хх (ошибка)
 
-        console.log(`error.response`);
-        console.log(error.response.data);
-        console.log(error.response.status);
-        console.log(error.response.headers);
+        // console.log(`error.response`);
+        // console.log(error.response.data);
+        // console.log(error.response.status);
+        // console.log(error.response.headers);
       } else if (error.request) {
         // Запрос был сделан, но ответ не получен
         // `error.request` - экземпляр XMLHttpRequest в браузере,
         // http.ClientRequest экземпляр в node.js
-        console.log(error.request);
+        // console.log(error.request);
       } else {
         // Что-то пошло не так, вернулась ошибка
-        console.log(`Error`, error.message);
+        // console.log(`Error`, error.message);
       }
-      console.log(error.config);
+      // console.log(error.config);
     });
   }
   post(path, params = {}) {
@@ -80,20 +80,20 @@ export default class HttpClient {
         // Запрос выполнен и сервер отправил вам статус код
         // код выпадает из диапазона 2хх (ошибка)
 
-        console.log(`error.response`);
-        console.log(error.response.data);
-        console.log(error.response.status);
-        console.log(error.response.headers);
+        // console.log(`error.response`);
+        // console.log(error.response.data);
+        // console.log(error.response.status);
+        // console.log(error.response.headers);
       } else if (error.request) {
         // Запрос был сделан, но ответ не получен
         // `error.request` - экземпляр XMLHttpRequest в браузере,
         // http.ClientRequest экземпляр в node.js
-        console.log(error.request);
+        // console.log(error.request);
       } else {
         // Что-то пошло не так, вернулась ошибка
-        console.log(`Error`, error.message);
+        // console.log(`Error`, error.message);
       }
-      console.log(error.config);
+      // console.log(error.config);
     });
   }
 
@@ -113,20 +113,20 @@ export default class HttpClient {
         // Запрос выполнен и сервер отправил вам статус код
         // код выпадает из диапазона 2хх (ошибка)
 
-        console.log(`error.response`)
-        console.log(error.response.data);
-        console.log(error.response.status);
-        console.log(error.response.headers);
+        // console.log(`error.response`)
+        // console.log(error.response.data);
+        // console.log(error.response.status);
+        // console.log(error.response.headers);
       } else if (error.request) {
         // Запрос был сделан, но ответ не получен
         // `error.request` - экземпляр XMLHttpRequest в браузере,
         // http.ClientRequest экземпляр в node.js
-        console.log(error.request);
+        // console.log(error.request);
       } else {
         // Что-то пошло не так, вернулась ошибка
-        console.log(`Error`, error.message);
+        // console.log(`Error`, error.message);
       }
-      console.log(error.config);
+      // console.log(error.config);
     });
   }
   put(path, params = {}) {
@@ -145,20 +145,20 @@ export default class HttpClient {
         // Запрос выполнен и сервер отправил вам статус код
         // код выпадает из диапазона 2хх (ошибка)
 
-        console.log(`error.response`);
-        console.log(error.response.data);
-        console.log(error.response.status);
-        console.log(error.response.headers);
+        // console.log(`error.response`);
+        // console.log(error.response.data);
+        // console.log(error.response.status);
+        // console.log(error.response.headers);
       } else if (error.request) {
         // Запрос был сделан, но ответ не получен
         // `error.request` - экземпляр XMLHttpRequest в браузере,
         // http.ClientRequest экземпляр в node.js
-        console.log(error.request);
+        // console.log(error.request);
       } else {
         // Что-то пошло не так, вернулась ошибка
-        console.log(`Error`, error.message);
+        // console.log(`Error`, error.message);
       }
-      console.log(error.config);
+      // console.log(error.config);
     });
   }
 }
@@ -182,35 +182,35 @@ export default class HttpClient {
     return this._load({url: `points`})
       .then((response) => response.json())
       .then((points) => points.map(PointsModel.adaptToClient))
-      // .then((result) => console.log(result));
+      // .then((result) => // console.log(result));
   }
 
 
   getPoints() {
     axios.get('/points').then(res => {
-      console.log(res); // Результат ответа от сервера
+      // console.log(res); // Результат ответа от сервера
     });
   }
 
 
   axios.get('/offers').then(res => {
-    console.log(res); // Результат ответа от сервера
+    // console.log(res); // Результат ответа от сервера
   });
 
   axios.get('/destination').then(res => {
-    console.log(res); // Результат ответа от сервера
+    // console.log(res); // Результат ответа от сервера
   });
 
   axios.post('points', {}).then(res => {
-    console.log(res); // Результат ответа от сервера
+    // console.log(res); // Результат ответа от сервера
   });
   // Put запрос
   axios.put('points', {}).then(res => {
-    console.log(res); // Результат ответа от сервера
+    // console.log(res); // Результат ответа от сервера
   });
   // Delete запрос
   axios.delete('points', {}).then(res => {
-    console.log(res); // Результат ответа от сервера
+    // console.log(res); // Результат ответа от сервера
   });
 
 
