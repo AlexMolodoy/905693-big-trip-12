@@ -1,16 +1,20 @@
-import {headerNode} from './components/header.js';
-import {bodyNode} from './components/body.js';
+import Header from './components/header.js';
+// import {bodyNode} from './components/body.js';
 
 import {render, RenderPosition} from './utils.js';
+// import getPoints from './services/getPoints.js';
+import {createCardArray} from './components/card.js';
 
+window.onload = async function () {
+  const points = await createCardArray();
+  const renderFlagHeader = document.querySelector(`.page-header__container`);
+  const header = new Header(points);
+  render(renderFlagHeader, header.getElement(), RenderPosition.BEFOREEND);
+  header.render();
+  // const renderFlagBody = document.querySelector(`.page-main`);
 
-const renderFlagHeader = document.querySelector(`.page-header__container`);
-
-render(renderFlagHeader, headerNode, RenderPosition.BEFOREEND);
-
-const renderFlagBody = document.querySelector(`.page-main`);
-
-render(renderFlagBody, bodyNode, RenderPosition.BEFOREEND);
+  // render(renderFlagBody, bodyNode, RenderPosition.BEFOREEND);
+};
 
 // headerNode.querySelector(`.trip-main__event-add-btn`).addEventListener(`click`, ()=>{
 
@@ -20,5 +24,4 @@ render(renderFlagBody, bodyNode, RenderPosition.BEFOREEND);
 
 // const trip = new Trip(siteTripEventsElement.querySelector(`.trip-days`));
 // trip.render(cards);
-
 

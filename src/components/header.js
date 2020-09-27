@@ -1,11 +1,11 @@
-import {shortRouteNode} from './short-route.js';
+import ShortRoute from './short-route.js';
 import Menu from './menu.js';
 import Abstract from './abstract.js';
 import FiltersTemplate from './filters-form.js';
 import {render, RenderPosition} from '../utils.js';
-import Filter from '../presenters/filter-presenter.js';
+// import Filter from '../presenters/filter-presenter.js';
 
-export function addEventFilteringListeners() {
+/* export function addEventFilteringListeners() {
 
   filteringForm.setFilterEverythingHandler(() => {
     const filterType = filteringForm.getElement().querySelector(`#filter-everything`).value;
@@ -23,19 +23,19 @@ export function addEventFilteringListeners() {
   });
 
 }
-
+ */
 export function createHeader() {
   return (
     `<div class="trip-main">
-          <!-- Маршрут и стоимость -->
+          <!-- ÐœÐ°Ñ€ÑˆÑ€ÑƒÑ‚ Ð¸ ÑÑ‚Ð¾Ð¸Ð¼Ð¾ÑÑ‚ÑŒ -->
 
           <div class="trip-main__trip-controls  trip-controls">
             <h2 class="visually-hidden">Switch trip view</h2>
-            <!-- Меню -->
+            <!-- ÐœÐµÐ½ÑŽ -->
 
 
             <h2 class="visually-hidden">Filter events</h2>
-            <!-- Фильтры -->
+            <!-- Ð¤Ð¸Ð»ÑŒÑ‚Ñ€Ñ‹ -->
 
           </div>
 
@@ -45,21 +45,19 @@ export function createHeader() {
 }
 
 export default class Header extends Abstract {
-  constructor() {
+  constructor(items) {
     super();
+    this.items = items.slice();
   }
 
   getTemplate() {
     return createHeader();
   }
+
+  render() {
+    render(this.getElement(), new ShortRoute(this.items).getElement(), RenderPosition.AFTERBEGIN);
+    render(this.getElement().querySelector(`.trip-controls`), new Menu().getElement(), RenderPosition.AFTERBEGIN);
+    render(this.getElement().querySelector(`.trip-controls`), new FiltersTemplate().getElement(), RenderPosition.BEFOREEND);
+    // addEventFilteringListeners();
+  }
 }
-
-export const filteringForm = new FiltersTemplate();
-
-export const headerNode = new Header().getElement();
-
-render(headerNode, shortRouteNode.getElement(), RenderPosition.AFTERBEGIN);
-render(headerNode.querySelector(`.trip-controls`), new Menu().getElement(), RenderPosition.AFTERBEGIN);
-render(headerNode.querySelector(`.trip-controls`), filteringForm.getElement(), RenderPosition.BEFOREEND);
-
-addEventFilteringListeners();

@@ -1,8 +1,7 @@
 import {MONTHS_MAP} from '../const.js';
-import {cards} from './card.js';
 import Abstract from './abstract.js';
-import TotalPrice from './total-price.js';
-import {render, RenderPosition} from '../utils.js';
+// import TotalPrice from './total-price.js';
+// import {render, RenderPosition} from '../utils.js';
 
 const citiesOnRoute = (array) => {
   const routeCities = [];
@@ -13,7 +12,7 @@ const citiesOnRoute = (array) => {
   return routeCities;
 };
 
-export function createShortRoute() {
+export function createShortRoute(cards) {
   return (
     `<section class="trip-main__trip-info  trip-info">
       <div class="trip-info__main">
@@ -34,9 +33,9 @@ export default class ShortRoute extends Abstract {
   }
 
   getTemplate() {
-    return createShortRoute();
+    return createShortRoute(this._route);
   }
 }
 
-export const shortRouteNode = new ShortRoute();
-render(shortRouteNode.getElement(), new TotalPrice().getElement(), RenderPosition.BEFOREEND);
+// export const shortRouteNode = new ShortRoute();
+// render(shortRouteNode.getElement(), new TotalPrice().getElement(), RenderPosition.BEFOREEND);

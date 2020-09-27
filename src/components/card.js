@@ -1,12 +1,27 @@
-import {cardGenerate} from '../mocks/card.js';
+// import {cardGenerate} from `../mocks/card.js`;
 import Abstract from './abstract.js';
-
-const createCardArray = () => {
-  const cardArray = [];
-  for (let i = 0; i < 5; i++) {
-    cardArray.push(cardGenerate());
-  }
-  return cardArray;
+import getPoints from '../services/getPoints';
+import {AUTH_TOKEN} from '../config';
+export const createCardArray = async () => {
+  const points = await getPoints({token: AUTH_TOKEN});
+  // console.log(`=>`, points);
+  return points.map((item) => {
+    const {name, pictures, description} = item.destination;
+    const duration = new Date(Date.parse(item[`date_to`]) - Date.parse(item[`date_from`]));
+    return {
+      id: item[`id`],
+      price: item[`base_price`],
+      startEvent: item[`date_from`],
+      endEvent: item[`date_to`],
+      isFavorite: item[`is_favorite`],
+      offer: item[`offers`],
+      type: item[`type`],
+      eventDuration: duration,
+      city: name,
+      photo: pictures,
+      description
+    };
+  });
 };
 
 export const cards = createCardArray();
