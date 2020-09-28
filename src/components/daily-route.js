@@ -1,6 +1,5 @@
 import Abstract from './abstract.js';
-// import {cards} from './card.js';
-// import {render, RenderPosition} from '../utils.js';
+import Trip from '../presenters/trip-presenter.js';
 
 export function createDailyRoute() {
 
@@ -18,6 +17,11 @@ export default class DailyRoute extends Abstract {
 
   getTemplate() {
     return createDailyRoute();
+  }
+
+  render() {
+    const dailyTrip = new Trip(this.getElement());
+    dailyTrip.render(this._dailyRoute);
   }
 }
 

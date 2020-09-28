@@ -13,6 +13,18 @@ const MONTHS_MAP = [
   `DEC`,
 ];
 
+const DEFAULT_CARD = {
+  type: `flight`,
+  city: `some city`,
+  photo: ``,
+  description: `some words`,
+  price: `some money`,
+  startEvent: `any date`,
+  endEvent: `any date`,
+  eventDuration: `duration`,
+  offer: ``,
+};
+
 const SortType = {
   EVENT: `sort-event`,
   TIME: `sort-time`,
@@ -27,6 +39,7 @@ const FilterType = {
 
 export {
   MONTHS_MAP,
+  DEFAULT_CARD,
   SortType,
   FilterType,
 };

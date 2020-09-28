@@ -5,25 +5,26 @@ import FiltersTemplate from './filters-form.js';
 import {render, RenderPosition} from '../utils.js';
 // import Filter from '../presenters/filter-presenter.js';
 
-/* export function addEventFilteringListeners() {
+// function addEventFilteringListeners() {
 
-  filteringForm.setFilterEverythingHandler(() => {
-    const filterType = filteringForm.getElement().querySelector(`#filter-everything`).value;
-    new Filter().rerender(filterType);
-  });
+//   filteringForm.setFilterEverythingHandler(() => {
+//     const filterType = filteringForm.getElement().querySelector(`#filter-everything`).value;
+//     new Filter().rerender(filterType);
+//   });
 
-  filteringForm.setFilterFutureHandler(() => {
-    const filterType = filteringForm.getElement().querySelector(`#filter-future`).value;
-    new Filter().rerender(filterType);
-  });
+//   filteringForm.setFilterFutureHandler(() => {
+//     const filterType = filteringForm.getElement().querySelector(`#filter-future`).value;
+//     new Filter().rerender(filterType);
+//   });
 
-  filteringForm.setFilterPastHandler(() => {
-    const filterType = filteringForm.getElement().querySelector(`#filter-past`).value;
-    new Filter().rerender(filterType);
-  });
+//   filteringForm.setFilterPastHandler(() => {
+//     const filterType = filteringForm.getElement().querySelector(`#filter-past`).value;
+//     new Filter().rerender(filterType);
+//   });
 
-}
- */
+// }
+
+
 export function createHeader() {
   return (
     `<div class="trip-main">
@@ -55,7 +56,9 @@ export default class Header extends Abstract {
   }
 
   render() {
-    render(this.getElement(), new ShortRoute(this.items).getElement(), RenderPosition.AFTERBEGIN);
+    const shortRoute = new ShortRoute(this.items);
+    shortRoute.render();
+    render(this.getElement(), shortRoute.getElement(), RenderPosition.AFTERBEGIN);
     render(this.getElement().querySelector(`.trip-controls`), new Menu().getElement(), RenderPosition.AFTERBEGIN);
     render(this.getElement().querySelector(`.trip-controls`), new FiltersTemplate().getElement(), RenderPosition.BEFOREEND);
     // addEventFilteringListeners();

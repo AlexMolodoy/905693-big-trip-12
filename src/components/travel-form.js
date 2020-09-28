@@ -1,5 +1,6 @@
 import Abstract from './abstract.js';
 import {onEscKeyDown} from '../utils.js';
+import {DEFAULT_CARD} from '../const.js';
 
 export function createTravelForm(card) {
 
@@ -28,11 +29,11 @@ export function createTravelForm(card) {
 
   }
   const renderPhotos = (allPhotos) => {
-    let rezult = ``;
-    for (const foto of allPhotos) {
-      rezult += `<img class="event__photo" src="${foto}" alt="Event photo">`;
+    let result = ``;
+    for (const photo of allPhotos) {
+      result += `<img class="event__photo" src="${photo}" alt="Event photo">`;
     }
-    return rezult;
+    return result;
   };
 
   return (
@@ -176,9 +177,9 @@ export function createTravelForm(card) {
 }
 
 export default class TravelForm extends Abstract {
-  constructor(travelElement) {
+  constructor() {
     super();
-    this._travelElement = travelElement;
+    this._defaultCard = DEFAULT_CARD;
 
     this._setSubmitHandler = this._setSubmitHandler.bind(this);
     this._setCloseHandler = this._setCloseHandler.bind(this);
@@ -186,7 +187,7 @@ export default class TravelForm extends Abstract {
   }
 
   getTemplate() {
-    return createTravelForm(this._travelElement);
+    return createTravelForm(this._defaultCard);
   }
 
   _setSubmitHandler(handler) {

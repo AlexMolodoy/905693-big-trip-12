@@ -11,8 +11,8 @@ export const createCardArray = async () => {
     return {
       id: item[`id`],
       price: item[`base_price`],
-      startEvent: item[`date_from`],
-      endEvent: item[`date_to`],
+      startEvent: new Date(item[`date_from`]),
+      endEvent: new Date(item[`date_to`]),
       isFavorite: item[`is_favorite`],
       offer: item[`offers`],
       type: item[`type`],
@@ -57,7 +57,7 @@ export function createTravelCard(card) {
 
           <div class="event__schedule">
             <p class="event__time">
-            <time class="event__start-time" datetime="${card.startEvent.getYear()}-${card.startEvent.getMonth()}-${card.startEvent.getDate()}T${card.startEvent.getHours()}:${card.startEvent.getMinutes()}">${card.startEvent.getHours()}:${card.startEvent.getMinutes()}</time>
+            <time class="event__start-time" datetime="${card.startEvent.getYear()}-${(card.startEvent).getMonth()}-${card.startEvent.getDate()}T${card.startEvent.getHours()}:${card.startEvent.getMinutes()}">${card.startEvent.getHours()}:${card.startEvent.getMinutes()}</time>
             &mdash;
             <time class="event__end-time" datetime="${card.endEvent.getYear()}-${card.endEvent.getMonth()}-${card.endEvent.getDate()}T${card.endEvent.getHours()}:${card.endEvent.getMinutes()}">${card.endEvent.getHours()}:${card.endEvent.getMinutes()}</time>
             </p>
